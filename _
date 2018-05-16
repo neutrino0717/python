@@ -1,0 +1,24 @@
+#_var, _func():       semiprivate and meant just for convention
+#__var, __func():     namemangle to prevent accidental access, 
+                      __var changed to _cls__var by interpreter to ensure that the name will not overlap 
+                      with a similar name in another class
+#__var__, __func__(): reserved for builtin methods/variables
+
+class Test(object):
+    def __init__(self):
+        self._a   = 'a'
+        self.__b    = 'b'
+        self.__c__ = 'c'
+t = Test()
+# _a is a private variable
+print t._a
+a
+# __c__ is a private variable, and in my view only for buildin, but it's OK if you use it
+print t.__c__
+c
+# __b not exist namemangling, use _Test__b instead
+#print t.__b
+print t._Test__b
+b
+[0][-bash4.3][neutrino0717@cloud syntax]
+$
