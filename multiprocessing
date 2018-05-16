@@ -1,0 +1,54 @@
+#Process vs. Pool
+from multiprocessing import Process
+from multiprocessing import Pool
+def f(title):
+    print '-->{}'.format(title)
+    print 'module name:', __name__
+    if hasattr(os, 'getppid'):  # only available on Unix
+        print 'parent process:', os.getppid()
+    print 'process id:', os.getpid()
+    return title
+print os.getpid()          ###current process, 43003
+f('function all')          #not start a new process, parent process: 60652, process id: 43003
+p  = Process(target=f, args=('function all with process',)) 
+p.start()
+p.join()                   #    start a new process, parent process: 43003, process id: 43004
+p2 = Pool(5)               #    start multiple new processes ....
+result = p2.map(f, ['function call {} in pool'.format(x) for x in xrange(7)])
+---------------------------------------------------------------------------------- 
+#multiprocessing.Process
+l = multiprocessing.Lock()
+def timer(tLock, name, delay, repeat):
+    tLock.acquire();
+.............
+    tLock.release();
+multiprocessing.Process(target=timer, args=(l, "Test1", 1, 5)).start()
+multiprocessing.Process(target=timer, args=(l, "Test2", 2, 4)).start()
+ 
+#multiprocessing.Pool
+##return value from all the processes will be in a list as Pool.map() function's return value
+def f1(x): 
+    return x*x
+print multiprocessing.Pool(processes=4).map(f1,range(1,11))
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+-------------------------------------------------------------------------------
+# multiprocessing.Queue, a near clone of Queue.Queue, thread and process safe
+from multiprocessing import Process, Queue
+def f(q): q.put([42, None, 'hello'])
+q = Queue()
+p = Process(target=f, args=(q,))
+p.start()
+print q.get()                        #[42, None, 'hello'], #data retrieved from the subprocess by queue.
+p.join()
+ 
+##multiprocessing.Pipe, a pipe which by default is duplex (two-way)
+from multiprocessing import Process, Pipe
+def f(conn):
+    conn.send([42, None, 'hello'])
+    conn.close()
+parent_conn, child_conn = Pipe()
+p = Process(target=f, args=(child_conn,))
+p.start()
+print parent_conn.recv()            #[42, None, 'hello'],  #data retrieved from the subprocess by pipe.
+p.join()
