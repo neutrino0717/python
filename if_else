@@ -1,0 +1,18 @@
+i=-7;   a =(i > 0 and "+" or "-");  print a          #-
+i= 7;   a = i > 0 and "+" or "-" ;  print a          #+
+i= 7;   a = "+" if i > 0 else "-";  print a          #+
+i=-7;   a = "+" if i > 0 else "-";  print a          #-
+i=-7;   a =("+" if i > 0 else "-"); print a          #-
+i=-7; print("+" if i > 0 else "-")                   #-
+
+def func(p1):
+    print "It's "+("not " if p1 else "")+"empty! ",
+    print "it" + (p1 and " is not" or " is") + " empty!"
+ 
+func('')         #It's empty!  it is empty!
+func([])         #It's empty!  it is empty!
+func(None)       #It's empty!  it is empty!
+func(0.0)        #It's empty!  it is empty!
+func(False)      #It's empty!  it is empty!
+func(' ')        #It's not empty!  it is not empty!
+func(True)       #It's not empty!  it is not empty!
