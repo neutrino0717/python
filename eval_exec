@@ -1,0 +1,12 @@
+eval and exec have these two differences:
+eval: take a single expression, return a value
+exec: take a block,             return None 
+
+1.eval accepts only a single expression, 
+  exec can take a code block that has Python statements: loops, try: except:, class and function/method definitions and so on.
+2.eval returns the value of the given expression, 
+  exec always returns None, ignores the return value from its code
+
+a=5; a = eval('37 + a'); print a          #42
+a=5; exec('a = 37 + a'); print a          #42 
+a=5; eval('a = 37 + a')                   #SyntaxError: invalid syntax, you cannot evaluate a statement with eval
