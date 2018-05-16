@@ -1,0 +1,31 @@
+#dec to hex
+print hex(16)           #0x10
+print "%X"     % 16     #10
+print "%x"     % 16     #10
+print "0x%x"   % 16     #0x10
+print "0x%x"   % 1616   #0x650
+print "0x%2x"  % 1616   #0x650
+print "0x%17x" % 1616   #0x              650
+
+print ord.__doc__
+ord(c) -> integer
+Return the integer ordinal of a one-character string.
+print chr.__doc__
+chr(i) -> character
+Return a string of one character with ordinal i; 0 <= i < 256.
+
+print ord('a'), chr(ord('a'))  #97 a
+print ord('1'), chr(ord('a'))  #49 a
+
+s = "Hello world!"
+print ":".join(            str(ord(x))for x in s)  #72:101:108:108:111:32:119:111:114:108:100:33
+print ":".join(  '%d'  %       ord(x) for x in s)  #72:101:108:108:111:32:119:111:114:108:100:33
+print ":".join(  '%x'  %       ord(x) for x in s)  #48:65:6c:6c:6f:20:77:6f:72:6c:64:21
+print ":".join( '%0X'  %       ord(x)  for x in s) #48:65:6C:6C:6F:20:77:6F:72:6C:64:21
+print ":".join("{:02x}".format(ord(x)) for x in s) #48:65:6c:6c:6f:20:77:6f:72:6c:64:21
+print ":".join(            hex(ord(x)) for x in s) #0x48:0x65:0x6c:0x6c:0x6f:0x20:0x77:0x6f:0x72:0x6c:0x64:0x21
+
+#a list of A-E
+print map(lambda x: chr(x), xrange(ord('A'),ord('E')+1))     #['A', 'B', 'C', 'D', 'E']
+print    [ chr(x) for x in xrange(ord('A'), ord('E')+1)]     #['A', 'B', 'C', 'D', 'E']
+print    ( chr(x) for x in xrange(ord('a'), ord('z')+1))     #<generator object <genexpr> at 0x7f16f2c915f0>
