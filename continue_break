@@ -1,0 +1,11 @@
+$ loop_for_continue_break.1.py
+def func(p1):
+    for i in xrange(p1+1):
+        if i==7: print "break out!"; break
+        if i==2: print "two",;      continue
+        print i,
+    else:
+        print "done!"
+
+func(10)  #0 1 two 3 4 5 6 break out!
+func(5)   #0 1 two 3 4 5 done!
