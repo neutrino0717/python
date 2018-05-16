@@ -1,0 +1,29 @@
+import time
+mytuple=(1975,7,11,22,59,59,0,0,0)
+print                             time.mktime(mytuple)   #174322799.0
+print time.asctime(time.localtime(time.mktime(mytuple))) #Fri Jul 11 22:59:59 1975
+print                             time.time()            #1493094303.6  #num of ticks since 1970/1/1/12:00 
+print              time.localtime(time.time())           #time.struct_time() #local time in tuple
+print time.asctime(time.localtime(time.time()))          #Tue Apr 25 12:25:05 2017  #convert tuple to local formatted string
+
+import datetime
+print datetime.timedelta                    #<type 'datetime.timedelta'>
+print datetime.date                         #<type 'datetime.date'>  #class for date only
+print datetime.time                         #<type 'datetime.time'>  #class for time only
+print datetime.datetime                     #<type 'datetime.datetime'> #class for both date and time
+print datetime.datetime(2016, 10, 1, 19, 30, 59, 99999)   #2016-10-01 19:30:59.099999
+print datetime.datetime.today()             #2017-04-25 12:51:08.911752
+print datetime.datetime.today().date()      #2017-04-25     #local date
+print datetime.datetime.today().time()      #12:52:05.980688
+print datetime.datetime.utcnow()            #2017-04-25 04:58:29.998501
+print datetime.datetime.now()               #2017-04-25 12:58:47.785288
+print datetime.datetime.now()  .date()      #2017-04-25     #local date
+print datetime.datetime.now()  .time()      #12:46:52.723122
+print datetime.date.today()                 #2017-04-25
+print datetime.date.today().weekday()       #1              #0 for Mon, 6 for Sun
+print datetime.date(1975,7,17)              #1975-07-17
+print datetime.date.today()-datetime.date(1975,7,11)        #15264 days, 0:00:00 #how many days have I lived
+print datetime.date.today()+datetime.timedelta(days=10000)  #2044-09-10  #after 10000 days
+    
+print datetime.timedelta(hours=1)                           #1:00:00
+print datetime.timedelta(hours=25,days=1,seconds=1)         #2 days, 1:00:01
