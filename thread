@@ -1,0 +1,59 @@
+---------------------------inherit---------------------------------------
+class AsyncPrint(threading.Thread):
+    def __init__(self, text):
+        threading.Thread.__init__(self)
+        self.text = text
+    def run(self):
+        pass
+ 
+background1 = AsyncPrint("#")
+background2 = AsyncPrint("$")
+background3 = AsyncPrint("^")
+background1.start()
+background2.start()
+background3.start()
+
+----------------------------no lock--------------------------------------
+def timer(name, delay, repeat): pass
+ 
+threading.Thread(target=timer, args=("Test1", 1, 5)).start()
+threading.Thread(target=timer, args=("Test2", 2, 5)).start()
+
+----------------------------with lock------------------------------------
+global tLock
+tLock = threading.Lock()
+def timer(name, delay, repeat):
+    tLock.acquire(); print(c + name + " has acquired lock to some codes")
+    ...
+    tLock.release(); print(c + name + " released lock to the codes")
+
+threading.Thread(target=timer, args=("Test1", 1, 5)).start()
+threading.Thread(target=timer, args=("Test2", 2, 5)).start()
+
+---------------------multiprocessing.Process------------------ 
+l = multiprocessing.Lock()
+def timer(tLock, name, delay, repeat):
+    tLock.acquire();
+    ...
+    tLock.release();
+multiprocessing.Process(target=timer, args=(l, "Test1", 1, 5)).start()
+multiprocessing.Process(target=timer, args=(l, "Test2", 2, 4)).start()
+
+
+-------------------------------------------------------------------------
+class WebpageThread(threading.Thread):
+    def __init__(self, site):
+        super(WebpageThread,self).__init__()
+        self.site=site
+        self.total=0
+    def run(self):
+        t1=time.time()
+        u=urllib.urlopen("http://"+ self.site)
+        text = u.read()        self.total = time.time() - t1
+ 
+sites = 'google.com|facebook.com|linuxfromscratch.org'.split('|')
+threadlst = [];
+t1=time.time()
+for i in xrange(0,len(sites)): threadlst.append(WebpageThread(sites[i]))
+for i in xrange(0,len(sites)): threadlst[i].start()
+for i in xrange(0,len(sites)): threadlst[i].join()
