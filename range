@@ -1,0 +1,8 @@
+#xrange(5) will return a xrange object
+#range(5) will return a list object
+
+#The advantage of xrange is that an xrange object will always take the same amount of memory, no matter the size of the range it represents.
+#
+#xrange only supports indexing, iteration, and the len() function.
+s=xrange(5); print s, type(s)   #xrange(5)       <type 'xrange'>
+s= range(5); print s, type(s)   #[0, 1, 2, 3, 4] <type 'list'>
