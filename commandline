@@ -1,0 +1,3 @@
+python -c "import inspect; print inspect.getmro(str)"   #(<type 'str'>, <type 'basestring'>, <type 'object'>)
+python -c "print type(str)"                             #<type 'type'>
+python -c "print dir(str)"                              #a list
