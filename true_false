@@ -1,0 +1,14 @@
+##True is 1, False is 0
+print True + True                     #2
+print False + False                   #0
+print True + False                    #1
+print True == 1, True == 0, True == 2   #True False False
+print False ==1, False ==0, False ==2   #False True False
+ 
+ 
+print "true" if 1 else "false"      #true
+print "true" if 0 else "false"      #false
+print "true" if '' else "false"     #false
+print "true" if [] else "false"     #false
+print "true" if False else "false"  #false
+print "true" if None else "false"   #false
