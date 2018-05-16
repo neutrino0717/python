@@ -1,0 +1,15 @@
+#use bitwise(&) to check if even or odd
+print 222 & 1                #0
+print 777 & 1                #1
+   if 777 & 1: print "odd";  #odd
+ 
+#a = 60            # 60 = 0011 1100
+#b = 13            # 13 = 0000 1101
+#c = 0
+ 
+print a & b;        # 12 = 0000 1100   #12
+print a | b;        # 61 = 0011 1101   #61
+print a ^ b;        # 49 = 0011 0001   #49
+print ~a;           # -61 = 1100 0011  #-61
+print a << 2;       # 240 = 1111 0000  #240
+print a >> 2;       # 15 = 0000 1111   #15
