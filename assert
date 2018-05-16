@@ -1,0 +1,4 @@
+assert True, "it is True, so no output"   #
+assert 'tough' in "toughy"                #
+assert 'tough' in "toughy", "no output"   #
+assert False, "it is Flase."              #AssertionError: it is Flase.
