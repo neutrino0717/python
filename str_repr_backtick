@@ -1,0 +1,20 @@
+#str(), repr(), `` are three ways to convert objects to str
+
+#str is a class, repr is a function
+#back tick is similar to str(), to trasform everything to string
+
+print str.__doc__
+str(object='') -> string
+Return a nice string representation of the object.
+If the argument is a string, the return value is the same object.
+print repr.__doc__
+repr(object) -> string
+Return the canonical string representation of the object.
+For most object types, eval(repr(object)) == object.
+
+print str.__class__               #<type 'type'>
+print repr.__class__              #<type 'builtin_function_or_method'>
+
+print "my mom is " + `29`              #my mom is 29
+print "my mom is " + repr(29)          #my mom is 29
+print "my mom is " + str(29)           #my mom is 29
