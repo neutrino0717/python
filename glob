@@ -1,0 +1,2 @@
+import glob
+for f in glob.glob("/etc/r*.conf"): print f    #/etc/rsnapshot.conf
