@@ -20,5 +20,31 @@ c
 #print t.__b
 print t._Test__b
 b
-[0][-bash4.3][neutrino0717@cloud syntax]
-$
+_______________________________________________________________________
+
+#e1 = Employee('evan' 'liu',10000)
+#
+#str(e1)     --> call e1.__str__()
+#repr(e1)    --> call e1.__repr__()
+#e1+e2       --> call e1.__add__(e2)
+#'a'+'b'     --> call str.__add__('a','b')
+#1+2         --> call int.__add__(1,2)
+#'ls'>'la'   --> call 'ls'.__ge__('la')
+#            --> call str.__ge__('ls','la')
+#len('ls')   --> call 'ls'.__len__()
+
+import inspect
+class Employee:
+    def __str__(self):
+        return inspect.stack()[0][3] + " called"
+    def __repr__(self):
+        return inspect.currentframe().f_code.co_name + " called"
+    def __add__(self, n):
+        return inspect.currentframe().f_code.co_name + " called"
+ 
+e1 = Employee()
+e2 = Employee()
+print str(e1)            #__str__ called
+print repr(e2)           #__repr__ called
+print e1 + e2            #__add__ called
+
