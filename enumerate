@@ -1,0 +1,19 @@
+ 
+ 
+import inspect
+#enumerate return an iterator(enumerate is iterator)
+e=enumerate(["spring", "summer","fall" ,"winter"], 1)
+print type(e)                   #<type 'enumerate'>
+print list(e)                   #[(1, 'spring'), (2, 'summer'), (3, 'fall'), (4, 'winter')]
+print inspect.getmro(enumerate) #(<type 'enumerate'>, <type 'object'>)for i in e: print i             #(0, 'spring')….
+
+#my_enumerate return a generator
+def my_enumerate(sequence, start=0):
+    n = start
+    for elem in sequence:
+        yield n, elem
+        n += 1
+e=my_enumerate(["spring", "summer","fall" ,"winter"], 1)
+print type(e)                  #<type 'generator'> 
+print list(e)                  #[(1, 'spring'), (2, 'summer'), (3, 'fall'), (4, 'winter')]
+for i in e: print i            #(0, 'spring').. 
