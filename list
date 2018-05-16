@@ -7,3 +7,16 @@ x = x + [4, 5 ]; print id(x), x  #140714377754240 [1, 2, 3, 4, [4, 5], 4, 5, 4, 
 list1=['1', '2', '3']; 
 print      ''.join(list1)        #123
 print list(''.join(list1))       #['1', '2', '3']
+
+#tuple
+GOOGLE_MODE='https'
+GAE_FETCHHOST='neutrino0717.appspot.com'
+GAE_PATH='fetch.py'
+tuple1=(GOOGLE_MODE, GAE_FETCHHOST, GAE_PATH)
+tuple2= GOOGLE_MODE, GAE_FETCHHOST, GAE_PATH   ##tuple can be without ()
+list1= [GOOGLE_MODE, GAE_FETCHHOST, GAE_PATH]
+
+GAE_FETCHSERVER='%s://%s%s?' % tuple1      ;print GAE_FETCHSERVER  #https://neutrino0717.appspot.comfetch.py?
+GAE_FETCHSERVER='%s://%s%s?' % tuple2      ;print GAE_FETCHSERVER  #https://neutrino0717.appspot.comfetch.py?
+GAE_FETCHSERVER='%s://%s%s?' % tuple(list1);print GAE_FETCHSERVER  #https://neutrino0717.appspot.comfetch.py?
+
