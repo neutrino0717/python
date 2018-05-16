@@ -1,0 +1,43 @@
+os.path is not a submodule of os "package"
+os and os.path are both modules
+ 
+##to verify, see below##
+print os                     #<module 'os' from '/usr/lib/python2.7/os.pyc'> 
+print sys.modules['os']      #<module 'os' from '/usr/lib/python2.7/os.pyc'>
+print os.path                #<module 'posixpath' from '/usr/lib/python2.7/posixpath.pyc'>
+print sys.modules['os.path'] #<module 'posixpath' from '/usr/lib/python2.7/posixpath.pyc'>
+print type(sys.modules)      #<type 'dict'>
+ 
+##functions in os##
+fname = os.__file__; print fname  #/usr/lib/python2.7/os.pyc
+print os.path.abspath(fname)      #/usr/lib/python2.7/os.pyc
+print os.path.dirname(fname)      #/usr/lib/python2.7
+print os.path.basename(fname)     #os.pyc
+print os.path.split(fname)        #('/usr/lib/python2.7', 'os.pyc')
+print os.path.splitext(os.path.basename(fname))     #('os', '.pyc')
+print os.path.join('/full/path/to/dir','abc.txt')   #/full/path/to/dir/abc.txt
+print os.path.join('/full/path/to/dir/','abc.txt')  #/full/path/to/dir/abc.txt
+print os.path.join('/full/path/to/dir//','abc.txt') #/full/path/to/dir//abc.txt
+print os.path.join('/full/path/to/dir//','rpath/abc.txt') #/full/path/to/dir//rpath/abc.txt
+print os.path.expanduser('~')         #/home/neutrino0717
+print os.path.expanduser('~root')     #/root
+print os.path.expandvars('$HOME')     #/home/neutrino0717
+print os.path.expandvars('$IFS')      #$IFS
+print os.path.expandvars('$LANG')     #en_US.UTF-8
+print os.path.expandvars('$HISTFILE') #$HISTFILE
+print os.path.expandvars('$noexist')  #$noexist
+print re.sub(r'(.*)\/.*', r'\1',fname, flags=re.M)  #/usr/lib/python2.7
+
+p=os.path
+print p.exists(fname)             #True 
+print p.isfile(fname)             #True 
+print p.isdir(fname)              #True 
+print p.islink(fname)             #False
+print p.ismount(fname)            #False 
+
+#cwd is where before you run the scripts
+print os.getcwd()               #/home/neutrino0717/graduation/python/08_File_Directory_Access
+print os.listdir(os.getcwd())   #['import_tarfile_shutil.py', 'import_glob--glob.done.py', 'module_os.path.py']
+
+##document##
+print os.path.abspath.__doc__
