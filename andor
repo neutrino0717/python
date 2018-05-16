@@ -1,0 +1,5 @@
+         y = 1        and "SH" or "not SH";  print y; #SH
+         y = 0        and "SH" or "not SH";  print y; #not SH
+x='021'; y =(x=='021' and "SH" or "not SH"); print y; #SH
+x='021'; y = x=='021' and "SH" or "not SH";  print y; #SH
+x='010'; y = x=='021' and "SH" or "not SH";  print y; #not SH
