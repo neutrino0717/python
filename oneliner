@@ -33,5 +33,10 @@ $ mount | python -c "import sys;[sys.stdout.write(' '.join(line.split(' ')[2:]))
 /cygdrive/c  type  ntfs   (binary,posix=0,user,noumount,auto)
 /cygdrive/y  type  smbfs  (binary,posix=0,user,noumount,auto)
 
-cat /etc/passwd | python -c "import sys,re;[sys.stdout.write(re.sub(':', ' ', line)) for line in sys.stdin]" |column -t
-cat /etc/passwd | sed 's/:/ /g' |column -t
+$ cat /etc/passwd | python -c "import sys,re;[sys.stdout.write(re.sub(':', ' ', line)) for line in sys.stdin]"  |column -t
+$ cat /etc/passwd | python -c "import sys,re; print '\n'.join([re.sub(':', ' ', line)  for line in sys.stdin])" |column -t
+$ cat /etc/passwd | sed 's/:/ /g' |column -t
+
+>>>                                           print '\n'.join(line.split(":",1)[0]       for line in open("/etc/passwd"))
+$ cat /etc/passwd | python -c 'import sys;    print "\n".join(line.split(":",1)[0]       for line in sys.stdin )'
+$ cat /etc/passwd | python -c 'import sys; [ sys.stdout.write(line.split(":",1)[0]+"\n") for line in sys.stdin ]'
