@@ -24,8 +24,9 @@ C:/cygwin64/lib  on  /usr/lib     type  ntfs   (binary,auto)
 C:/cygwin64      on  /            type  ntfs   (binary,auto)
 C:               on  /cygdrive/c  type  ntfs   (binary,posix=0,user,noumount,auto)
 Y:               on  /cygdrive/y  type  smbfs  (binary,posix=0,user,noumount,auto)
-$ awk -F' +' '{print $3" "$4" "$5" "$6}' <<<"`mount` " |column -t
-$ python -c "import sys;[sys.stdout.write(' '.join(line.split(' ')[2:])) for line in sys.stdin]" <<<"`mount` " |column -t
+$ mount | awk -F' +' '{print $3" "$4" "$5" "$6}' |column -t
+$ mount | awk -F' +' '{for (i=3;i<NF;i++){printf $i" "}; print $NF}' |column -t
+$ mount | python -c "import sys;[sys.stdout.write(' '.join(line.split(' ')[2:])) for line in sys.stdin]" |column -t
 /usr/bin     type  ntfs   (binary,auto)
 /usr/lib     type  ntfs   (binary,auto)
 /            type  ntfs   (binary,auto)
