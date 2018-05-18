@@ -32,3 +32,6 @@ $ mount | python -c "import sys;[sys.stdout.write(' '.join(line.split(' ')[2:]))
 /            type  ntfs   (binary,auto)
 /cygdrive/c  type  ntfs   (binary,posix=0,user,noumount,auto)
 /cygdrive/y  type  smbfs  (binary,posix=0,user,noumount,auto)
+
+cat /etc/passwd | python -c "import sys,re;[sys.stdout.write(re.sub(':', ' ', line)) for line in sys.stdin]" |column -t
+cat /etc/passwd | sed 's/:/ /g' |column -t
