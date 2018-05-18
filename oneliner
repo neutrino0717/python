@@ -1,0 +1,33 @@
+>>> import pprint;pprint.pprint(zip(('Byte', 'KByte', 'MByte', 'GByte', 'TByte'), (1 << 10*i for i in xrange(5))))
+[('Byte', 1),
+ ('KByte', 1024),
+ ('MByte', 1048576),
+ ('GByte', 1073741824),
+ ('TByte', 1099511627776)]
+
+>>> print '\n'.join("%i Byte = %i Bit = largest number: %i" % (j, j*8, 256**j-1) for j in (1 << i for i in xrange(8)))
+1 Byte = 8 Bit = largest number: 255
+2 Byte = 16 Bit = largest number: 65535
+4 Byte = 32 Bit = largest number: 4294967295
+8 Byte = 64 Bit = largest number: 18446744073709551615
+16 Byte = 128 Bit = largest number: 340282366920938463463374607431768211455
+32 Byte = 256 Bit = largest number: 115792089237316195423570985008687907853269984665640564039457584007913129639935
+64 Byte = 512 Bit = largest number: 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811
+946569946433649006084095
+128 Byte = 1024 Bit = largest number: 179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768
+81441662249284743063947412437776789342486548527630221960124609411945308295208500576883815068234246288147391311054082723716335051068458629823994724593847971630483535632
+9624224137215
+
+$ mount |column -t
+C:/cygwin64/bin  on  /usr/bin     type  ntfs   (binary,auto)
+C:/cygwin64/lib  on  /usr/lib     type  ntfs   (binary,auto)
+C:/cygwin64      on  /            type  ntfs   (binary,auto)
+C:               on  /cygdrive/c  type  ntfs   (binary,posix=0,user,noumount,auto)
+Y:               on  /cygdrive/y  type  smbfs  (binary,posix=0,user,noumount,auto)
+$ awk -F' +' '{print $3" "$4" "$5" "$6}' <<<"`mount` " |column -t
+$ python -c "import sys;[sys.stdout.write(' '.join(line.split(' ')[2:])) for line in sys.stdin]" <<<"`mount` " |column -t
+/usr/bin     type  ntfs   (binary,auto)
+/usr/lib     type  ntfs   (binary,auto)
+/            type  ntfs   (binary,auto)
+/cygdrive/c  type  ntfs   (binary,posix=0,user,noumount,auto)
+/cygdrive/y  type  smbfs  (binary,posix=0,user,noumount,auto)
